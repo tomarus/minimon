@@ -1,0 +1,95 @@
+{
+    "globals": {
+        "redis": "localhost:6379"
+    },
+
+    "alarms": {
+        "stderr": {
+            "type": "stderr"
+        },
+        "mail": {
+            "type": "email",
+            "args": "chiparus@gmail.com"
+        }
+    },
+
+    "commands": {
+        "echo": {
+            "command": "echo",
+            "args" : "Hello, $"
+        },
+        "willfail": {
+            "command": "./minimon_test.sh"
+        },
+        "dns": {
+            "command": "/usr/lib/nagios/plugins/check_dns",
+            "args": "-H $"
+        },
+        "http": {
+            "command": "/usr/lib/nagios/plugins/check_http",
+            "args": "-H $"
+        },
+        "nntp": {
+            "command": "/usr/lib/nagios/plugins/check_nntp",
+            "args": "-H $"
+        }
+    },
+
+    "checklists": {
+        "dnsservers": [
+            "ns1", "ns2", "ns3"
+        ],
+        "testports" : [
+            "80", "88", "8080"
+        ],
+        "httpchecks": [
+            "www.chiparus.net", "www.xsnews.nl", "www.microsoft.com"
+        ],
+        "nntpservers": [
+            "test.xennanews.com", "reader.xsnews.nl"
+        ]
+    },
+
+    "checks": [
+        {
+            "command": "http",
+            "args": [ "$" ],
+            "checklist": "httpchecks",
+            "schedule": "test",
+            "alarms": [ "stderr", "mail" ]
+        },
+        {
+            "command": "nntp",
+            "args": [ "$" ],
+            "checklist": "nntpservers",
+            "schedule": "test",
+            "alarms": [ "stderr", "mail" ]
+        },
+        {
+            "command": "echo",
+            "args": [ "World!" ],
+            "schedule": "test",
+            "alarms": [ "stderr" ]
+        },
+        {
+            "command": "echo",
+            "args": [ "$" ],
+            "checklist": "dnsservers",
+            "schedule": "test",
+            "alarms": [ "stderr" ]
+        },
+        {
+            "command": "dns",
+            "args": [ "$" ],
+            "checklist": "dnsservers",
+            "schedule": "test",
+            "alarms": [ "stderr" ]
+        },
+        {
+            "command": "willfail",
+            "schedule": "test",
+            "alarms": [ "stderr", "mail" ],
+            "report": "ok"
+        }
+    ]
+}

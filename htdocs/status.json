@@ -1,0 +1,291 @@
+{
+ 	"stats": [
+ 		{
+ 			"id": "http www.chiparus.net",
+ 			"checkid": "fea10a67674976fb338d94fd2cf63347",
+ 			"command": "/usr/lib/nagios/plugins/check_http -H www.chiparus.net",
+ 			"lastcheck": 1417382007,
+ 			"lastok": 1417382008,
+ 			"checktime": 0.28338268,
+ 			"stdout": "HTTP OK: HTTP/1.1 200 OK - 15895 bytes in 0.281 second response time |time=0.281097s;;;0.000000 size=15895B;;;0",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "http www.xsnews.nl",
+ 			"checkid": "fea10a67674976fb338d94fd2cf63347",
+ 			"command": "/usr/lib/nagios/plugins/check_http -H www.xsnews.nl",
+ 			"lastcheck": 1417382008,
+ 			"lastok": 1417382008,
+ 			"checktime": 0.035989054,
+ 			"stdout": "HTTP OK: HTTP/1.1 301 Moved Permanently - 375 bytes in 0.034 second response time |time=0.033752s;;;0.000000 size=375B;;;0",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "http www.microsoft.com",
+ 			"checkid": "fea10a67674976fb338d94fd2cf63347",
+ 			"command": "/usr/lib/nagios/plugins/check_http -H www.microsoft.com",
+ 			"lastcheck": 1417382008,
+ 			"lastok": 1417382010,
+ 			"checktime": 2.358544,
+ 			"stdout": "HTTP OK: HTTP/1.1 200 OK - 1333 bytes in 2.356 second response time |time=2.356402s;;;0.000000 size=1333B;;;0",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "nntp test.xennanews.com",
+ 			"checkid": "0908bb119ed606821897e2f317685121",
+ 			"command": "/usr/lib/nagios/plugins/check_nntp -H test.xennanews.com",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.15477544,
+ 			"stdout": "NNTP OK - 0.035 second response time on port 119 [200 Welcome to test.xennanews.com]|time=0.035367s;;;0.000000;10.000000",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "nntp reader.xsnews.nl",
+ 			"checkid": "0908bb119ed606821897e2f317685121",
+ 			"command": "/usr/lib/nagios/plugins/check_nntp -H reader.xsnews.nl",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.05207689,
+ 			"stdout": "NNTP OK - 0.035 second response time on port 119 [200 Welcome to XS News]|time=0.035331s;;;0.000000;10.000000",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "echo",
+ 			"checkid": "341f38450f0d1e97a3a486ebe4cfa4fc",
+ 			"command": "echo Hello, World!",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.001045111,
+ 			"stdout": "Hello, World!",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "echo ns1",
+ 			"checkid": "32a183801b5a36dfe713e845052a176b",
+ 			"command": "echo Hello, ns1",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.001027537,
+ 			"stdout": "Hello, ns1",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "echo ns2",
+ 			"checkid": "32a183801b5a36dfe713e845052a176b",
+ 			"command": "echo Hello, ns2",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.001081474,
+ 			"stdout": "Hello, ns2",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "echo ns3",
+ 			"checkid": "32a183801b5a36dfe713e845052a176b",
+ 			"command": "echo Hello, ns3",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.001014444,
+ 			"stdout": "Hello, ns3",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "dns ns1",
+ 			"checkid": "a7b8a86015589b906795e57bdee3ff4c",
+ 			"command": "/usr/lib/nagios/plugins/check_dns -H ns1",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.04242618,
+ 			"stdout": "DNS OK: 0.041 seconds response time. ns1 returns 10.0.0.71|time=0.040932s;;;0.000000",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "dns ns2",
+ 			"checkid": "a7b8a86015589b906795e57bdee3ff4c",
+ 			"command": "/usr/lib/nagios/plugins/check_dns -H ns2",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382010,
+ 			"checktime": 0.043480154,
+ 			"stdout": "DNS OK: 0.042 seconds response time. ns2 returns 10.0.0.72|time=0.041936s;;;0.000000",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "dns ns3",
+ 			"checkid": "a7b8a86015589b906795e57bdee3ff4c",
+ 			"command": "/usr/lib/nagios/plugins/check_dns -H ns3",
+ 			"lastcheck": 1417382010,
+ 			"lastok": 1417382011,
+ 			"checktime": 0.2760794,
+ 			"stdout": "DNS OK: 0.274 seconds response time. ns3 returns 31.25.98.251|time=0.274496s;;;0.000000",
+ 			"stderr": "",
+ 			"status": "OK"
+ 		},
+ 		{
+ 			"id": "willfail",
+ 			"checkid": "5d6fa41823a8e7235feeaed89d3612c6",
+ 			"command": "./minimon_test.sh ",
+ 			"lastcheck": 1417382011,
+ 			"lastok": 1417365883,
+ 			"checktime": 0.002086811,
+ 			"stdout": "Debug stdout",
+ 			"stderr": "Debug stderr\nexit status 2",
+ 			"status": "Error"
+ 		}
+ 	],
+ 	"config": {
+ 		"globals": {
+ 			"redis": "localhost:6379"
+ 		},
+ 		"commands": {
+ 			"dns": {
+ 				"command": "/usr/lib/nagios/plugins/check_dns",
+ 				"args": "-H $"
+ 			},
+ 			"echo": {
+ 				"command": "echo",
+ 				"args": "Hello, $"
+ 			},
+ 			"http": {
+ 				"command": "/usr/lib/nagios/plugins/check_http",
+ 				"args": "-H $"
+ 			},
+ 			"nntp": {
+ 				"command": "/usr/lib/nagios/plugins/check_nntp",
+ 				"args": "-H $"
+ 			},
+ 			"willfail": {
+ 				"command": "./minimon_test.sh",
+ 				"args": ""
+ 			}
+ 		},
+ 		"alarms": {
+ 			"mail": {
+ 				"type": "email",
+ 				"args": "example@example.com"
+ 			},
+ 			"stderr": {
+ 				"type": "stderr",
+ 				"args": ""
+ 			}
+ 		},
+ 		"checks": [
+ 			{
+ 				"id": "fea10a67674976fb338d94fd2cf63347",
+ 				"args": [
+ 					"$"
+ 				],
+ 				"checklist": "httpchecks",
+ 				"command": "http",
+ 				"alarms": [
+ 					"stderr",
+ 					"mail"
+ 				],
+ 				"schedule": "test",
+ 				"report": "",
+ 				"errors": 0
+ 			},
+ 			{
+ 				"id": "0908bb119ed606821897e2f317685121",
+ 				"args": [
+ 					"$"
+ 				],
+ 				"checklist": "nntpservers",
+ 				"command": "nntp",
+ 				"alarms": [
+ 					"stderr",
+ 					"mail"
+ 				],
+ 				"schedule": "test",
+ 				"report": "",
+ 				"errors": 0
+ 			},
+ 			{
+ 				"id": "341f38450f0d1e97a3a486ebe4cfa4fc",
+ 				"args": [
+ 					"World!"
+ 				],
+ 				"checklist": "",
+ 				"command": "echo",
+ 				"alarms": [
+ 					"stderr"
+ 				],
+ 				"schedule": "test",
+ 				"report": "",
+ 				"errors": 0
+ 			},
+ 			{
+ 				"id": "32a183801b5a36dfe713e845052a176b",
+ 				"args": [
+ 					"$"
+ 				],
+ 				"checklist": "dnsservers",
+ 				"command": "echo",
+ 				"alarms": [
+ 					"stderr"
+ 				],
+ 				"schedule": "test",
+ 				"report": "",
+ 				"errors": 0
+ 			},
+ 			{
+ 				"id": "a7b8a86015589b906795e57bdee3ff4c",
+ 				"args": [
+ 					"$"
+ 				],
+ 				"checklist": "dnsservers",
+ 				"command": "dns",
+ 				"alarms": [
+ 					"stderr"
+ 				],
+ 				"schedule": "test",
+ 				"report": "",
+ 				"errors": 0
+ 			},
+ 			{
+ 				"id": "5d6fa41823a8e7235feeaed89d3612c6",
+ 				"checklist": "",
+ 				"command": "willfail",
+ 				"alarms": [
+ 					"stderr",
+ 					"mail"
+ 				],
+ 				"schedule": "test",
+ 				"report": "ok",
+ 				"errors": 1
+ 			}
+ 		],
+ 		"checklists": {
+ 			"dnsservers": [
+ 				"ns1",
+ 				"ns2",
+ 				"ns3"
+ 			],
+ 			"httpchecks": [
+ 				"www.chiparus.net",
+ 				"www.xsnews.nl",
+ 				"www.microsoft.com"
+ 			],
+ 			"nntpservers": [
+ 				"test.xennanews.com",
+ 				"reader.xsnews.nl"
+ 			],
+ 			"testports": [
+ 				"80",
+ 				"88",
+ 				"8080"
+ 			]
+ 		}
+ 	}
+ }
