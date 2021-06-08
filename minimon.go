@@ -4,18 +4,29 @@ package main
 import (
 	"bytes"
 	"crypto/md5"
+	"crypto/tls"
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/garyburd/redigo/redis"
+	"net/http"
+	"net/smtp"
 	"os"
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/garyburd/redigo/redis"
 )
 
 type Global struct {
 	Redis string `json:"redis"`
+}
+
+type SMTP struct {
+	Server   string `json:"server"`
+	Addr     string `json:"addr"`
+	User     string `json:"user"`
+	Password string `json:"pass"`
 }
 
 type Command struct {
@@ -58,6 +69,7 @@ type AllStats struct {
 }
 
 type config struct {
+	SMTP       SMTP                `json:"smtp"`
 	Globals    Global              `json:"globals"`
 	Commands   map[string]Command  `json:"commands"`
 	Alarms     map[string]Alarm    `json:"alarms"`
@@ -72,6 +84,7 @@ var f_schedule = flag.String("schedule", "", "Name/ID of the schedule to run.")
 var f_json = flag.Bool("json", false, "Output all checks statistics.")
 var f_config = flag.String("config", "/etc/minimon.json", "Name of the config file to use.")
 var f_verbose = flag.Bool("v", false, "Print debugging output.")
+var f_daemon = flag.String("d", "", "Daemononize with this path to htdocs.")
 
 func loadConfig(config string) (err error) {
 	f, err := os.Open(config)
@@ -278,25 +291,35 @@ func (c *Check) triggerAlarm(id, status, msg string) {
 // --
 
 func sendmail(to, msg string) {
-	cmd := exec.Command("/usr/sbin/sendmail", "-t")
-	f, err := cmd.StdinPipe()
+	c, err := smtp.Dial(Config.SMTP.Server + ":25")
 	panicif(err)
 
-	err = cmd.Start()
+	err = c.StartTLS(&tls.Config{ServerName: Config.SMTP.Server})
 	panicif(err)
 
-	hn, _ := os.Hostname()
-	if hn == "" {
-		hn = "localhost"
-	}
+	err = c.Auth(smtp.PlainAuth("", Config.SMTP.User, Config.SMTP.Password, Config.SMTP.Server))
+	panicif(err)
 
-	fmt.Fprintf(f, "To: %s\n", to)
-	fmt.Fprintf(f, "From: <minimon@%s>\n", hn)
-	fmt.Fprintf(f, "Subject: [minimon] %s\n", msg)
-	fmt.Fprintf(f, "\n%s\n.\n", msg)
+	err = c.Mail(Config.SMTP.Addr)
+	panicif(err)
 
-	f.Close()
-	cmd.Wait()
+	err = c.Rcpt(to)
+	panicif(err)
+
+	w, err := c.Data()
+	panicif(err)
+
+	fmt.Fprintf(w, "From: System Monitoring <%s>\r\n", Config.SMTP.Addr)
+	fmt.Fprintf(w, "Date: %s\r\n", time.Now().Format(time.RFC822))
+	fmt.Fprintf(w, "Subject: System Event\r\n")
+	fmt.Fprintf(w, "\r\n")
+	fmt.Fprintf(w, "%s", msg)
+
+	err = w.Close()
+	panicif(err)
+
+	err = c.Quit()
+	panicif(err)
 }
 
 func md5sum(in ...string) (sum string) {
@@ -329,6 +352,10 @@ func main() {
 
 	if *f_schedule != "" {
 		runSchedule(*f_schedule)
+
+	} else if *f_daemon != "" {
+		http.Handle("/", http.FileServer(http.Dir(*f_daemon)))
+		http.ListenAndServe(":8000", nil)
 
 	} else if *f_json {
 		b, _ := json.MarshalIndent(&AllStats{Stats: getStats(), Config: Config}, " ", "\t")
