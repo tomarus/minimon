@@ -1,10 +1,11 @@
 {
 	"globals": {
-		"redis": "localhost:6379"
+		"redis": "localhost:6379",
+		"redisdb": 8
 	},
 	"smtp": {
-		"server": "mail.exampl.com",
-		"addr": "fromaddr@exampl.com",
+		"server": "mail.example.com",
+		"addr": "fromaddr@example.com",
 		"user": "example",
 		"pass": "example"
 	},
@@ -12,15 +13,15 @@
 		"stderr": {
 			"type": "stderr"
 		},
-		"mail": {
+		"mail_disabled": {
 			"type": "email",
-			"args": "chiparus@gmail.com"
+			"args": "alertme@example.com"
 		}
 	},
 	"commands": {
 		"echo": {
 			"command": "echo",
-			"args": "Hello, $"
+			"args": "Hello, $ (this is: $)"
 		},
 		"willfail": {
 			"command": "./minimon_test.sh"
@@ -87,7 +88,8 @@
 		{
 			"command": "echo",
 			"args": [
-				"World!"
+				"World!",
+				"thisisarg2"
 			],
 			"schedule": "test",
 			"alarms": [
@@ -97,7 +99,8 @@
 		{
 			"command": "echo",
 			"args": [
-				"$"
+				"$",
+				"thisisarg2"
 			],
 			"checklist": "dnsservers",
 			"schedule": "test",

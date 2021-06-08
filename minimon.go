@@ -19,7 +19,8 @@ import (
 )
 
 type Global struct {
-	Redis string `json:"redis"`
+	Redis   string `json:"redis"`
+	RedisDB int    `json:"redisdb"`
 }
 
 type SMTP struct {
@@ -118,7 +119,7 @@ func initRedis() (err error) {
 	if err != nil {
 		return err
 	}
-	_, err = db.Do("SELECT", 8)
+	_, err = db.Do("SELECT", Config.Globals.RedisDB)
 	return err
 }
 
@@ -324,7 +325,7 @@ func sendmail(to, msg string) {
 
 func md5sum(in ...string) (sum string) {
 	h := md5.New()
-	fmt.Fprintf(h, strings.Join(in, " "))
+	fmt.Fprint(h, strings.Join(in, " "))
 	sum = fmt.Sprintf("%x", h.Sum(nil))
 	return
 }
